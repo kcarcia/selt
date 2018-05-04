@@ -1,0 +1,13 @@
+[
+  {
+    "use_case_name": "Test use case",
+    "use_case_description": "This is a description of a test use case.",
+    "tests": [
+      {
+        "test": "OCPHome"
+      },
+      {
+        "test": "OCPLogin.test_login_redirect"
+      }]
+  }
+]
