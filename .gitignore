@@ -1,2 +1,4 @@
+*.pyc
 .idea/
 geckodriver.log
+configs/config.py
