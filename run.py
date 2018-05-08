@@ -64,12 +64,15 @@ def import_modules():
                   doc.endswith(".py") and doc != "__init__.py"]
 
     for view in views:
+        class_name = view.split("_")[0].capitalize() + view.split("_")[
+            1].capitalize()
+
         # Import class
         package = __import__("views." + view)
         module = getattr(package, view)
 
         # Create instance of class
-        sub_module = getattr(module, view)(driver)
+        sub_module = getattr(module, class_name)(driver)
         modules[view] = sub_module
 
     return modules
@@ -99,7 +102,7 @@ def execute_tests(tests, modules_loaded):
             # Run group of tests
             if test["type"] == "test-group":
                 module_name = test["test_name"]
-                tests = open_file("tests/" + module_name + "Manifest.json")
+                tests = open_file("tests/" + module_name + "_manifest.json")
                 execute_tests(tests, modules_loaded)
             # Run individual test
             else:
