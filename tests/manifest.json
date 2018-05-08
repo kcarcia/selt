@@ -4,10 +4,12 @@
     "use_case_description": "This is a description of a test use case.",
     "tests": [
       {
-        "test": "OCPHome"
+        "test_name": "OCPHome",
+        "type": "test-group"
       },
       {
-        "test": "OCPLogin.test_login_redirect"
+        "test_name": "OCPLogin.test_login_redirect",
+        "type": "test"
       }]
   }
 ]

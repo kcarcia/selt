@@ -1,5 +1,6 @@
 [
   {
-    "test": "OCPLogin.test_login_redirect"
+    "test_name": "OCPLogin.test_login_redirect",
+    "type": "test"
   }
 ]

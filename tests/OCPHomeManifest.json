@@ -1,8 +1,10 @@
 [
   {
-    "test": "OCPHome.test_go_to_ocp"
+    "test_name": "OCPHome.test_go_to_ocp",
+    "type": "test"
   },
   {
-    "test": "OCPHome.test_login_to_ocp"
+    "test_name": "OCPHome.test_login_to_ocp",
+    "type": "test"
   }
 ]

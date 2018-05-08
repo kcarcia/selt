@@ -58,7 +58,7 @@ def import_modules():
     NOTE:A future enhancement is that we only import classes used by the tests
     being run.
     """
-    modules = []
+    modules = dict()
     # Names of all view classes
     views = [doc.split(".")[0] for doc in os.listdir("views") if
                   doc.endswith(".py") and doc != "__init__.py"]
@@ -70,7 +70,7 @@ def import_modules():
 
         # Create instance of class
         sub_module = getattr(module, view)(driver)
-        modules.append(sub_module)
+        modules[view] = sub_module
 
     return modules
 
@@ -97,18 +97,17 @@ def execute_tests(tests, modules_loaded):
         # enabled field, then we assume the test is enabled and run it
         if test.get("enabled", True):
             # Run group of tests
-            if "." not in test["test"]:
-                module_name = test["test"]
+            if test["type"] == "test-group":
+                module_name = test["test_name"]
                 tests = open_file("tests/" + module_name + "Manifest.json")
                 execute_tests(tests, modules_loaded)
             # Run individual test
             else:
                 try:
-                    module_name = test["test"].split(".")[0]
-                    test_name = test["test"].split(".")[1]
-                    module = [module for module in modules_loaded
-                              if module.name == module_name][0]
-                    getattr(module, test_name)(*test.get("params", []))
+                    module_name = test["test_name"].split(".")[0]
+                    test_name = test["test_name"].split(".")[1]
+                    getattr(modules_loaded[module_name], test_name)(*test.get(
+                        "params", []))
                     print colored("PASSED: " + test_name, "green")
                 except Exception as e:
                     print colored("FAILED: " + test_name + " with message: ",
