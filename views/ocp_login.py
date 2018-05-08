@@ -1,6 +1,6 @@
-class OCPLogin:
+class OcpLogin:
     def __init__(self, driver):
-        self.name = "OCPLogin"
+        self.name = "OcpLogin"
         self.driver = driver
         self.elements = dict(login_with_rh="/html/body/div/div[2]/div[1]/a")
 

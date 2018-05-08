@@ -1,0 +1,10 @@
+[
+  {
+    "test_name": "ocp_home.test_go_to_ocp",
+    "type": "test"
+  },
+  {
+    "test_name": "ocp_home.test_login_to_ocp",
+    "type": "test"
+  }
+]

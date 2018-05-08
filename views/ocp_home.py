@@ -1,6 +1,6 @@
-class OCPHome:
+class OcpHome:
     def __init__(self, driver):
-        self.name = "OCPHome"
+        self.name = "OcpHome"
         self.driver = driver
         self.elements = dict(login_button="//*[@id='nav-main']/ul/li[6]/a")
 
