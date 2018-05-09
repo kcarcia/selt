@@ -1,15 +1,12 @@
 [
   {
-    "use_case_name": "Test use case",
-    "use_case_description": "This is a description of a test use case.",
-    "tests": [
-      {
-        "test_name": "ocp_home",
-        "type": "test-group"
-      },
-      {
-        "test_name": "ocp_login.test_login_redirect",
-        "type": "test"
-      }]
+    "test_name": "tests.test_google_search"
+  },
+  {
+    "test_name": "tests.google_docs",
+    "type": "test-group"
+  },
+  {
+    "test_name": "tests.google_docs.test_create_doc"
   }
 ]
