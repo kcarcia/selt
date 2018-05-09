@@ -135,14 +135,23 @@ def execute_tests(tests):
                     test_path = test["test_name"].split(".")
                     test_name = test_path[len(test_path) - 1]
                     del test_path[-1]
-    
+
                     # Import module if not already imported
                     if test_name not in tests_loaded:
                         import_test(test_path, test_name)
 
+                    # Execute test setup
+                    getattr(tests_loaded[test_name], "setup")(*test.get(
+                        "setup_params", []))
+
                     # Execute the test
                     getattr(tests_loaded[test_name], test_name)(*test.get(
                         "params", []))
+
+                    # Execute test teardown
+                    getattr(tests_loaded[test_name], "teardown")(*test.get(
+                        "teardown_params", []))
+
                     print colored("PASSED: " + test_name, "green")
                 except Exception as e:
                     print colored("FAILED: " + test_name + " with message: ",

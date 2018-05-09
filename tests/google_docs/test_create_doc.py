@@ -1,8 +1,9 @@
 from views.google_login import GoogleLogin
 from views.google_docs_dashboard import GoogleDocsDashboard
+from base_test import BaseTest
 
 
-class TestCreateDoc:
+class TestCreateDoc(BaseTest):
     def __init__(self, driver):
         self.name = "TestCreateDoc"
         self.driver = driver

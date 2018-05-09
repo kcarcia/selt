@@ -1,8 +1,9 @@
 from views.google_login import GoogleLogin
 from views.google_docs_dashboard import GoogleDocsDashboard
+from base_test import BaseTest
 
 
-class TestDeleteDoc:
+class TestDeleteDoc(BaseTest):
     def __init__(self, driver):
         self.name = "TestDeleteDoc"
         self.driver = driver

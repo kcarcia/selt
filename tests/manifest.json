@@ -4,9 +4,11 @@
   },
   {
     "test_name": "tests.google_docs",
-    "type": "test-group"
+    "type": "test-group",
+    "enabled": false
   },
   {
-    "test_name": "tests.google_docs.test_create_doc"
+    "test_name": "tests.google_docs.test_create_doc",
+    "enabled": false
   }
 ]
