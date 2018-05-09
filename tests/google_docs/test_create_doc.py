@@ -4,9 +4,8 @@ from base_test import BaseTest
 
 
 class TestCreateDoc(BaseTest):
-    def __init__(self, driver):
+    def __init__(self):
         self.name = "TestCreateDoc"
-        self.driver = driver
 
     def test_create_doc(self):
         """

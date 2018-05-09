@@ -4,9 +4,8 @@ from base_test import BaseTest
 
 
 class TestDeleteDoc(BaseTest):
-    def __init__(self, driver):
+    def __init__(self):
         self.name = "TestDeleteDoc"
-        self.driver = driver
 
     def test_delete_doc(self):
         """

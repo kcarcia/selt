@@ -1,9 +1,4 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
-from selenium.webdriver.chrome.options import DesiredCapabilities
 import argparse
-import os
 import json
 import imp
 from termcolor import colored
@@ -17,37 +12,6 @@ parser.add_argument("--browser", help="(String) Browser tests are run on. "
                                       "chrome-headless. Default is "
                                       "chrome-headless.",
                     default=DEFAULT_BROWSER)
-
-
-def init_browser():
-    """
-    Initializes the latest version of chrome, chrome-headless, firefox,
-    or firefox-headless. The browser is passed through the command line via
-    the --browser flag OR the default browser specified in config.py is used.
-    :return webdriver: The webdriver used to run Selenium tests on
-
-    NOTE: Currently, init_browser supports only the latest version of Firefox
-    and the latest version of Chrome. It  should be expanded to introduce
-    more configurability and browser options. Additionally, parallelization
-    is not yet supported.
-    """
-    if "firefox" in browser.lower():
-        binary = FirefoxBinary(FIREFOX_PATH)
-        firefox_capabilities = DesiredCapabilities.FIREFOX
-        firefox_capabilities["marionette"] = True
-
-        if "headless" in browser.lower():
-            os.environ['MOZ_HEADLESS'] = '1'
-
-        return webdriver.Firefox(firefox_binary=binary,
-                                 executable_path=GECKODRIVER_PATH)
-    elif "chrome" in browser.lower():
-        if "headless" in browser.lower():
-            chrome_options = Options()
-            chrome_options.add_argument("--headless")
-            return webdriver.Chrome(chrome_options=chrome_options)
-
-        return webdriver.Chrome()
 
 
 def import_test(test_path, test_name):
@@ -73,7 +37,7 @@ def import_test(test_path, test_name):
     module = imp.load_source(test_name, file_path)
 
     # Create instance of test class
-    test_class = getattr(module, class_name)(driver)
+    test_class = getattr(module, class_name)()
 
     # Add instance of test class to dictionary
     tests_loaded[test_name] = test_class
@@ -141,16 +105,13 @@ def execute_tests(tests):
                         import_test(test_path, test_name)
 
                     # Execute test setup
-                    getattr(tests_loaded[test_name], "setup")(*test.get(
-                        "setup_params", []))
+                    getattr(tests_loaded[test_name], "setup")(browser)
 
                     # Execute the test
-                    getattr(tests_loaded[test_name], test_name)(*test.get(
-                        "params", []))
+                    getattr(tests_loaded[test_name], test_name)()
 
                     # Execute test teardown
-                    getattr(tests_loaded[test_name], "teardown")(*test.get(
-                        "teardown_params", []))
+                    # getattr(tests_loaded[test_name], "teardown")()
 
                     print colored("PASSED: " + test_name, "green")
                 except Exception as e:
@@ -172,6 +133,4 @@ def run():
 tests_loaded = dict()
 args = parser.parse_args()
 browser = args.browser
-driver = ""
-# driver = init_browser()
 run()

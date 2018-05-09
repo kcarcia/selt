@@ -1,15 +1,12 @@
 class GoogleDocsDashboard:
-    def __init__(self, driver):
+    def __init__(self):
         self.name = "GoogleDocsDashboard"
-        self.driver = driver
-        self.elements = dict(login_with_rh="/html/body/div/div[2]/div[1]/a")
+        self.elements = dict()
 
-    def create_document(self):
-        # self.driver.find_element_by_xpath(
-        #     self.elements["login_with_rh"]).click()
+    @staticmethod
+    def create_document():
         print "User can create a google document."
 
-    def delete_document(self):
-        # self.driver.find_element_by_xpath(
-        #     self.elements["login_with_rh"]).click()
+    @staticmethod
+    def delete_document():
         print "User can delete a google document."

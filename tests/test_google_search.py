@@ -1,18 +1,16 @@
 from base_test import BaseTest
+from views.google_search import GoogleSearch
 
 
 class TestGoogleSearch(BaseTest):
-    def __init__(self, driver):
+    def __init__(self):
         self.name = "TestGoogleSearch"
-        self.driver = driver
-
-    def setup(self):
-        print "overriden setup"
 
     def test_google_search(self):
         """
         Polarion ID #: Verify the user can search on google.
         :return:
         """
-        print "User can search."
+        google_search_view = GoogleSearch()
+        google_search_view.google_search(self.driver)
 
