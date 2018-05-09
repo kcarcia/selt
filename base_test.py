@@ -34,14 +34,14 @@ class BaseTest:
                 os.environ['MOZ_HEADLESS'] = '1'
 
             self.driver = webdriver.Firefox(firefox_binary=binary,
-                                     executable_path=GECKODRIVER_PATH)
+                                            executable_path=GECKODRIVER_PATH)
         elif "chrome" in browser.lower():
+            chrome_options = Options()
             if "headless" in browser.lower():
-                chrome_options = Options()
                 chrome_options.add_argument("--headless")
-                self.driver = webdriver.Chrome(chrome_options=chrome_options)
 
-            self.driver = webdriver.Chrome()
+            self.driver = webdriver.Chrome(chrome_options=chrome_options,
+                                           executable_path=CHROME_PATH)
 
     def teardown(self):
         """
