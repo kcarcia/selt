@@ -37,7 +37,7 @@ def import_test(test_path, test_name):
     module = imp.load_source(test_name, file_path)
 
     # Create instance of test class
-    test_class = getattr(module, class_name)()
+    test_class = getattr(module, class_name)(browser)
 
     # Add instance of test class to dictionary
     tests_loaded[test_name] = test_class
@@ -105,7 +105,7 @@ def execute_tests(tests):
                         import_test(test_path, test_name)
 
                     # Execute test setup
-                    getattr(tests_loaded[test_name], "setup")(browser)
+                    getattr(tests_loaded[test_name], "setup")()
 
                     # Execute the test
                     getattr(tests_loaded[test_name], test_name)()

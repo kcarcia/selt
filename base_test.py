@@ -6,12 +6,13 @@ import os
 from configs.config import *
 
 
-class BaseTest:
-    def __init__(self):
+class BaseTest(object):
+    def __init__(self, browser):
         self.name = "BaseTest"
         self.driver = ""
+        self.browser = browser
 
-    def setup(self, browser):
+    def setup(self):
         """
         Default setup method for tests. The browser is passed through the
         command line via the --browser flag OR the default browser specified
@@ -25,19 +26,19 @@ class BaseTest:
         :param browser: (string) browser to run tests on
         :return:
         """
-        if "firefox" in browser.lower():
+        if "firefox" in self.browser.lower():
             binary = FirefoxBinary(FIREFOX_PATH)
             firefox_capabilities = DesiredCapabilities.FIREFOX
             firefox_capabilities["marionette"] = True
 
-            if "headless" in browser.lower():
+            if "headless" in self.browser.lower():
                 os.environ['MOZ_HEADLESS'] = '1'
 
             self.driver = webdriver.Firefox(firefox_binary=binary,
                                             executable_path=GECKODRIVER_PATH)
-        elif "chrome" in browser.lower():
+        elif "chrome" in self.browser.lower():
             chrome_options = Options()
-            if "headless" in browser.lower():
+            if "headless" in self.browser.lower():
                 chrome_options.add_argument("--headless")
 
             self.driver = webdriver.Chrome(chrome_options=chrome_options,

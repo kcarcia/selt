@@ -3,8 +3,9 @@ from views.google_search import GoogleSearch
 
 
 class TestGoogleSearch(BaseTest):
-    def __init__(self):
+    def __init__(self, browser):
         self.name = "TestGoogleSearch"
+        super(TestGoogleSearch, self).__init__(browser)
 
     def test_google_search(self):
         """
