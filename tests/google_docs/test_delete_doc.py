@@ -1,11 +1,13 @@
 from views.google_login import GoogleLogin
+from views.google_search import GoogleSearch
 from views.google_docs_dashboard import GoogleDocsDashboard
 from base_test import BaseTest
 
 
 class TestDeleteDoc(BaseTest):
-    def __init__(self):
+    def __init__(self, browser):
         self.name = "TestDeleteDoc"
+        super(TestDeleteDoc, self).__init__(browser)
 
     def test_delete_doc(self):
         """
@@ -13,8 +15,4 @@ class TestDeleteDoc(BaseTest):
         create a google document.
         :return:
         """
-        login_view = GoogleLogin("")
-        dashboard_view = GoogleDocsDashboard("")
-        login_view.google_login()
-        dashboard_view.delete_document()
-
+        print "Delete document."

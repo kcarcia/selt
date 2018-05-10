@@ -111,7 +111,7 @@ def execute_tests(tests):
                     getattr(tests_loaded[test_name], test_name)()
 
                     # Execute test teardown
-                    # getattr(tests_loaded[test_name], "teardown")()
+                    getattr(tests_loaded[test_name], "teardown")()
 
                     print colored("PASSED: " + test_name, "green")
                 except Exception as e:

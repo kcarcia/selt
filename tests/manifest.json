@@ -1,13 +1,13 @@
 [
   {
-    "test_name": "tests.test_google_search"
+    "test_name": "tests.test_google_search",
   },
   {
     "test_name": "tests.google_docs",
-    "type": "test-group",
-    "enabled": false
+    "type": "test-group"
   },
   {
-    "test_name": "tests.google_docs.test_create_doc"
+    "test_name": "tests.google_docs.test_create_doc",
+    "enabled": false
   }
 ]
