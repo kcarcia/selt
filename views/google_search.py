@@ -14,9 +14,10 @@ class GoogleSearch:
 
     def google_search(self):
         self.driver.find_element_by_xpath(self.elements[
-                                            "search_input"]).send_keys(
+                                              "search_input"]).send_keys(
             "cats")
-        self.driver.find_element_by_xpath(self.elements["search_input"]).send_keys(
+        self.driver.find_element_by_xpath(
+            self.elements["search_input"]).send_keys(
             u'\ue007')
 
     def open_google_app(self, app):

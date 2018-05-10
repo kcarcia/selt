@@ -1,6 +1,6 @@
 [
   {
-    "test_name": "tests.test_google_search",
+    "test_name": "tests.test_google_search"
   },
   {
     "test_name": "tests.google_docs",

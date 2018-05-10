@@ -11,10 +11,7 @@ class GoogleDocsDashboard:
                                          "2]/div/div[1]/div/div/div[3]/div["
                                          "1]/div/button[1]",
                              new_doc_btn="//*[contains(text(), 'Google "
-                                         "Docs')]",
-                             select_doc="//*[@id=':13']/div/div["
-                                        "1]/div/div/div/div/div[2]/div/div",
-                             copy_btn="//*[contains(text(), 'Make a copy')]")
+                                         "Docs')]")
 
     def create_document(self):
         self.driver.find_element_by_xpath(self.elements["new_btn"]).click()
