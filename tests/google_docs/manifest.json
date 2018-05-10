@@ -4,5 +4,6 @@
  },
  {
   "test_name": "tests.google_docs.test_delete_doc"
+  "enabled": false
  }
 ]

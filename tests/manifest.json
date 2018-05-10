@@ -8,7 +8,6 @@
     "enabled": false
   },
   {
-    "test_name": "tests.google_docs.test_create_doc",
-    "enabled": false
+    "test_name": "tests.google_docs.test_create_doc"
   }
 ]

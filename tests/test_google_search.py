@@ -13,5 +13,6 @@ class TestGoogleSearch(BaseTest):
         :return:
         """
         google_search_view = GoogleSearch()
+        self.driver.get(google_search_view.url)
         google_search_view.google_search(self.driver)
 
