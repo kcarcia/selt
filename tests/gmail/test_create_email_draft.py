@@ -18,7 +18,6 @@ class TestCreateEmailDraft(BaseTest):
         google_search_view = GoogleSearch(self.driver)
         gmail_dashboard = GmailDashboard(self.driver)
 
-        self.driver.get(login_view.url)
         login_view.google_login()
         google_search_view.open_google_app("gmail")
         gmail_dashboard.compose_email()

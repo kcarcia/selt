@@ -23,7 +23,6 @@ class BaseTest(object):
         introduce more configurability and browser options. Additionally,
         parallelization is not yet supported.
 
-        :param browser: (string) browser to run tests on
         :return:
         """
         if "firefox" in self.browser.lower():
@@ -40,6 +39,9 @@ class BaseTest(object):
             chrome_options = Options()
             if "headless" in self.browser.lower():
                 chrome_options.add_argument("--headless")
+                # User agent necessary to specify browser being used to
+                # ensure pages load the same in a headless and non-headless
+                # state.
                 chrome_options.add_argument("--user-agent=Mozilla/5.0 (X11; "
                                             "Linux x86_64) AppleWebKit/537.36 "
                                             "(KHTML, like Gecko) "

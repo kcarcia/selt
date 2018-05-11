@@ -13,11 +13,13 @@ class GmailDashboard:
                              email_recipient="//textarea[@aria-label='To']",
                              close_btn=":5m",
                              draft_link="//*[@id=':49']/div/div[2]/span/a",
-                             select_all_checkbox="//*[@id=':60']",
-                             discard_draft_btn="//div["
-                                               "@aria-label='Discard draft']")
+                             star_btn="//*[@id=':60']")
 
     def compose_email(self):
+        """
+        Compose gmail draft.
+        :return:
+        """
         self.driver.find_element_by_xpath(self.elements["compose_btn"]).click()
         email_recipient = WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.XPATH, self.elements[
@@ -25,17 +27,21 @@ class GmailDashboard:
         email_recipient.send_keys(
             "test")
         self.driver.find_element_by_id(self.elements["close_btn"]).click()
+        time.sleep(1)
 
-    def delete_email_draft(self):
+    def star_email_draft(self):
+        """
+        Star 1 gmail draft.
+
+        NOTE: This test is not currently working reliably, therefore, I have
+        disabled it in the manifest file.
+
+        :return:
+        """
         actions = ActionChains(self.driver)
         self.driver.find_element_by_xpath(self.elements["draft_link"]).click()
-        select_all_checkbox = WebDriverWait(self.driver, 20).until(
+        star_btn = WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.XPATH, self.elements[
-                "select_all_checkbox"])))
-        actions.move_to_element(select_all_checkbox).click().perform()
-        discard_draft_btn = WebDriverWait(self.driver, 20).until(
-            EC.element_to_be_clickable((By.XPATH, self.elements[
-                "discard_draft_btn"])))
-        discard_draft_btn.click()
-        time.sleep(1)
-        self.driver.refresh()
+                "star_btn"])))
+        actions.move_to_element(star_btn).click().perform()
+

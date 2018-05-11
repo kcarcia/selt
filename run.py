@@ -50,8 +50,12 @@ def open_file(file_name):
     :param file_name: (strong) The name of the file to be opened
     :return: (json) Contents of file
     """
-    with open(file_name, 'r') as f:
-        return json.load(f)
+    try:
+        with open(file_name, 'r') as f:
+            return json.load(f)
+    except Exception as e:
+        print "ERROR: Check your JSON file for syntax errors"
+        print e
 
 
 def generate_file_path(package_path, file_name):
@@ -59,7 +63,7 @@ def generate_file_path(package_path, file_name):
     Dynamically generate full path to file, including filename and extension.
 
     :param package_path: (array) ordered list of packages in path to test file
-    :param file_name: (string) name of the file w/ test, not including extension
+    :param file_name: (string) name of the file w/ test, including the extension
     :return: (string) full path to file, including filename and extension
     """
     file_path = ""
@@ -108,7 +112,8 @@ def execute_tests(tests):
                     getattr(tests_loaded[test_name], "setup")()
 
                     # Execute the test
-                    getattr(tests_loaded[test_name], test_name)()
+                    getattr(tests_loaded[test_name], test_name)(*test.get(
+                        "params", []))
 
                     # Execute test teardown
                     getattr(tests_loaded[test_name], "teardown")()
