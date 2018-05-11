@@ -40,7 +40,10 @@ class BaseTest(object):
             chrome_options = Options()
             if "headless" in self.browser.lower():
                 chrome_options.add_argument("--headless")
-
+                chrome_options.add_argument("--user-agent=Mozilla/5.0 (X11; "
+                                            "Linux x86_64) AppleWebKit/537.36 "
+                                            "(KHTML, like Gecko) "
+                                            "Chrome/60.0.3112.50 Safari/537.36")
             self.driver = webdriver.Chrome(chrome_options=chrome_options,
                                            executable_path=CHROME_PATH)
 

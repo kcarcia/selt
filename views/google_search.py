@@ -8,15 +8,15 @@ class GoogleSearch:
         self.name = "GoogleSearch"
         self.url = "https://google.com"
         self.driver = driver
-        self.elements = dict(search_input="//*[@id='lst-ib']",
+        self.elements = dict(search_input="lst-ib",
                              apps_btn="gbwa",
-                             drive_btn="gb49")
+                             gmail_btn="gb23")
 
     def google_search(self):
-        self.driver.find_element_by_xpath(self.elements[
+        self.driver.find_element_by_id(self.elements[
                                               "search_input"]).send_keys(
             "cats")
-        self.driver.find_element_by_xpath(
+        self.driver.find_element_by_id(
             self.elements["search_input"]).send_keys(
             u'\ue007')
 
@@ -25,6 +25,6 @@ class GoogleSearch:
             EC.element_to_be_clickable((By.ID, self.elements[
                 "apps_btn"])))
         app_btn.click()
-        if app == "drive":
-            self.driver.find_element_by_id(self.elements["drive_btn"]).click()
+        if app == "gmail":
+            self.driver.find_element_by_id(self.elements["gmail_btn"]).click()
 
