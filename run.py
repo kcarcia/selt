@@ -68,7 +68,7 @@ def generate_file_path(package_path, file_name):
     """
     file_path = ""
     for package in package_path:
-        file_path = file_path + package + "/"
+        file_path += package + "/"
     return file_path + file_name
 
 
@@ -82,47 +82,51 @@ def execute_tests(tests):
     for test in tests:
         # If a test has an enabled field set to true OR does not have an
         # enabled field, then we assume the test is enabled and run it
-        if test.get("enabled", True):
-            # Run group of tests
-            if test.get("type", "test") == "test-group":
-                # Generate the path to the test group's manifest file
-                filename = generate_file_path(test["test_name"].split("."),
-                                              "manifest.json")
+        if not test.get("enabled", True):
+            continue
 
-                # Open manifest file for test group
-                tests = open_file(filename)
+        # Run group of tests
+        if test.get("type", "test") == "test-group":
+            # Generate the path to the test group's manifest file
+            filename = generate_file_path(test["test_name"].split("."),
+                                          "manifest.json")
 
-                # Execute tests in test group
-                execute_tests(tests)
+            # Open manifest file for test group
+            tests = open_file(filename)
 
-            # Run individual test
-            else:
-                try:
-                    # The test name for an individual test includes the test
-                    # name. We must parse this out to generate the package path.
-                    test_path = test["test_name"].split(".")
-                    test_name = test_path[len(test_path) - 1]
-                    del test_path[-1]
+            # Execute tests in test group
+            execute_tests(tests)
 
-                    # Import module if not already imported
-                    if test_name not in tests_loaded:
-                        import_test(test_path, test_name)
+        # Run individual test
+        else:
+            try:
+                # The test name for an individual test includes the test
+                # name. We must parse this out to generate the package path.
+                # Example individual test: tests.example_test_1
+                # Example group test: tests.group_tests.example_test_2
+                test_path = test["test_name"].split(".")
+                test_name = test_path[len(test_path) - 1]
+                del test_path[-1]
 
-                    # Execute test setup
-                    getattr(tests_loaded[test_name], "setup")()
+                # Import module if not already imported
+                if test_name not in tests_loaded:
+                    import_test(test_path, test_name)
 
-                    # Execute the test
-                    getattr(tests_loaded[test_name], test_name)(*test.get(
-                        "params", []))
+                # Execute test setup
+                getattr(tests_loaded[test_name], "setup")()
 
-                    # Execute test teardown
-                    getattr(tests_loaded[test_name], "teardown")()
+                # Execute the test
+                getattr(tests_loaded[test_name], test_name)(*test.get(
+                    "params", []))
 
-                    print colored("PASSED: " + test_name, "green")
-                except Exception as e:
-                    print colored("FAILED: " + test_name + " with message: ",
-                                  "red")
-                    print colored(e, "red")
+                # Execute test teardown
+                getattr(tests_loaded[test_name], "teardown")()
+
+                print colored("PASSED: " + test_name, "green")
+            except Exception as e:
+                print colored("FAILED: " + test_name + " with message: ",
+                              "red")
+                print colored(e, "red")
 
 
 def run():

@@ -19,11 +19,12 @@ firefox, and firefox-headless.
 
 1- cd into your selt directory.
 
-`
+```
 $ cd selt
-`
+```
 
 2- Run your tests.
 
-`
-$ python run.py`
+```
+$ python run.py
+```
