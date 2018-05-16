@@ -54,8 +54,8 @@ def open_file(file_name):
         with open(file_name, 'r') as f:
             return json.load(f)
     except Exception as e:
-        print "ERROR: Check your JSON file for syntax errors"
-        print e
+        print("ERROR: Check your JSON file for syntax errors")
+        print(e)
 
 
 def generate_file_path(package_path, file_name):
@@ -122,11 +122,11 @@ def execute_tests(tests):
                 # Execute test teardown
                 getattr(tests_loaded[test_name], "teardown")()
 
-                print colored("PASSED: " + test_name, "green")
+                print(colored("PASSED: " + test_name, "green"))
             except Exception as e:
-                print colored("FAILED: " + test_name + " with message: ",
-                              "red")
-                print colored(e, "red")
+                print(colored("FAILED: " + test_name + " with message: ",
+                              "red"))
+                print(colored(e, "red"))
 
 
 def run():
