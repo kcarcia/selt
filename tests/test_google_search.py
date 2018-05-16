@@ -13,8 +13,8 @@ class TestGoogleSearch(BaseTest):
         setup method.
         :return:
         """
-        print "Example of an overwritten setup method that leverages the " \
-              "default setup method"
+        print("Example of an overwritten setup method that leverages the " \
+              "default setup method")
         super(TestGoogleSearch, self).setup()
 
     def teardown(self):
@@ -22,7 +22,7 @@ class TestGoogleSearch(BaseTest):
         Example of an overwritten teardown method.
         :return:
         """
-        print "Example of an overwritten teardown method."
+        print("Example of an overwritten teardown method.")
 
     def test_google_search(self, search_term="cats"):
         """
