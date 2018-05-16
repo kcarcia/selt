@@ -1,5 +1,5 @@
 import argparse
-import json
+import yaml
 import imp
 from termcolor import colored
 from configs.config import *
@@ -45,16 +45,16 @@ def import_test(test_path, test_name):
 
 def open_file(file_name):
     """
-    Opens a file in read only mode and returns its content in JSON.
+    Opens a file in read only mode and returns its content in yaml.
 
     :param file_name: (strong) The name of the file to be opened
-    :return: (json) Contents of file
+    :return: (yaml) Contents of file
     """
     try:
         with open(file_name, 'r') as f:
-            return json.load(f)
-    except Exception as e:
-        print("ERROR: Check your JSON file for syntax errors")
+            return yaml.load(f)
+    except yaml.YAMLError as e:
+        print("ERROR: Check your yaml file for syntax errors")
         print(e)
 
 
@@ -76,7 +76,7 @@ def execute_tests(tests):
     """
     Executes specified tests.
 
-    :param tests: (json) List of tests to run
+    :param tests: (yaml) List of tests to run
     :return:
     """
     for test in tests:
@@ -89,7 +89,7 @@ def execute_tests(tests):
         if test.get("type", "test") == "test-group":
             # Generate the path to the test group's manifest file
             filename = generate_file_path(test["test_name"].split("."),
-                                          "manifest.json")
+                                          "manifest.yml")
 
             # Open manifest file for test group
             tests = open_file(filename)
@@ -135,7 +135,7 @@ def run():
 
     :return:
     """
-    use_cases = open_file("tests/manifest.json")
+    use_cases = open_file("tests/manifest.yml")
     execute_tests(use_cases)
 
 
