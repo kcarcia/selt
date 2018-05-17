@@ -144,34 +144,6 @@ def execute_tests(tests):
                 print(colored(e, "red"))
 
 
-# def generate_config_file():
-#     """
-#     Generate selt configuration file under the user's home directory.
-#     :return:
-#     """
-#     default_browser = ""
-#
-#     # Gather information for config file
-#     print("A selt configuration file was not found. Let's create one:")
-#     while default_browser not in ["firefox", "firefox-headelss", "chrome", "chrome-headless"]:
-#         print("You can run your tests on chrome, chrome-headless, firefox, or firefox-headless")
-#         default_browser = input("What browser do you want to run your tests on by default?")
-#     gecko_driver = input("What is the path to your gecko driver? (Enter to skip) ")
-#     ff_driver = input("What is the path to your firefox driver? (Enter to skip) ")
-#     chrome_driver = input("What is the path to your Chrome driver? (Enter to skip) ")
-#     print("\nYour selt configuration has been created at " + selt_config + ". You can modify this file at any time.")
-#
-#     # Create config file
-#     os.umask(0)
-#     with open(os.open(selt_config, os.O_CREAT | os.O_WRONLY, 0o777), 'w') as f:
-#         f.write("[DEFAULTS]\n")
-#         f.write("browser = " + "\"" + default_browser + "\"\n\n")
-#         f.write("[WEBDRIVER PATHS]\n")
-#         f.write("geckodriver_path = " + "\"" + gecko_driver + "\"")
-#         f.write("firefox_path = " + "\"" + ff_driver + "\"")
-#         f.write("chrome_path = " + "\"" + chrome_driver + "\"")
-
-
 def run():
     """
     Pull selt configuration. Open manifest file with tests and executes tests.
