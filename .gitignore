@@ -2,3 +2,7 @@
 *.pyc
 .idea/
 *.log
+/*.egg-info
+/*.egg
+build/
+dist/

@@ -3,7 +3,13 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.chrome.options import DesiredCapabilities
 import os
-from configs.config import *
+import configparser
+
+
+# selt configs
+selt_config = os.path.expanduser('~') + "/.selt.cfg"
+config = configparser.ConfigParser()
+config.read(selt_config)
 
 
 class BaseTest(object):
@@ -26,7 +32,7 @@ class BaseTest(object):
         :return:
         """
         if "firefox" in self.browser.lower():
-            binary = FirefoxBinary(FIREFOX_PATH)
+            binary = FirefoxBinary(config["WEBDRIVER PATHS"]["firefox_path"])
             firefox_capabilities = DesiredCapabilities.FIREFOX
             firefox_capabilities["marionette"] = True
 
@@ -34,7 +40,7 @@ class BaseTest(object):
                 os.environ['MOZ_HEADLESS'] = '1'
 
             self.driver = webdriver.Firefox(firefox_binary=binary,
-                                            executable_path=GECKODRIVER_PATH)
+                                            executable_path=config["WEBDRIVER PATHS"]["geckodriver_path"])
         elif "chrome" in self.browser.lower():
             chrome_options = Options()
             if "headless" in self.browser.lower():
@@ -47,7 +53,7 @@ class BaseTest(object):
                                             "(KHTML, like Gecko) "
                                             "Chrome/60.0.3112.50 Safari/537.36")
             self.driver = webdriver.Chrome(chrome_options=chrome_options,
-                                           executable_path=CHROME_PATH)
+                                           executable_path=config["WEBDRIVER PATHS"]["chrome_path"])
 
     def teardown(self):
         """

@@ -2,16 +2,31 @@ import argparse
 import yaml
 import imp
 from termcolor import colored
-from configs.config import *
+import os
+import configparser
 
 
+# GLOBAL VARIABLES
+
+# Dictionary of tests loaded
+tests_loaded = dict()
+
+# selt configs
+selt_config = os.path.expanduser('~') + "/.selt.cfg"
+config = configparser.ConfigParser()
+config.read(selt_config)
+
+# Command line arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("--browser", help="(String) Browser tests are run on. "
                                       "Options include: firefox, "
                                       "firefox-headless, chrome, "
                                       "chrome-headless. Default is "
                                       "chrome-headless.",
-                    default=DEFAULT_BROWSER)
+                    default=config["DEFAULTS"]["browser"])
+
+args = parser.parse_args()
+browser = args.browser
 
 
 def import_test(test_path, test_name):
@@ -139,7 +154,3 @@ def run():
     execute_tests(use_cases)
 
 
-tests_loaded = dict()
-args = parser.parse_args()
-browser = args.browser
-run()
