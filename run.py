@@ -45,7 +45,7 @@ def import_test(test_path, test_name):
     for name in test_name.split("_"):
         class_name = class_name + name.capitalize()
 
-    # Build the full file path to the test as a ssering
+    # Build the full file path to the test as a string
     file_path = generate_file_path(test_path, test_name + ".py")
 
     # Load module with test class given the file (test) name and file path
@@ -146,7 +146,7 @@ def execute_tests(tests):
 
 def run():
     """
-    Pull selt configuration. Open manifest file with tests and executes tests.
+    Open manifest file with tests and executes tests.
 
     :return:
     """

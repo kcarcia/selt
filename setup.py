@@ -19,7 +19,7 @@ setup(
                       'pyyaml'],
     # Create selt config file in the user home dir on install
     data_files=[(os.path.expanduser('~'), ['.selt.cfg'])],
-    # Script make selt accessible to command line
+    # Script that makes selt accessible to command line
     entry_points={
         'console_scripts': ['selt=run:run'],
     }
