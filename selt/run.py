@@ -2,10 +2,16 @@ import argparse
 import yaml
 import imp
 from termcolor import colored
-import os
 import configparser
+import sys
+import os
 
 
+# Add relative path to sys path
+# This is necessary so the user can import modules (e.g., views) in their tests
+sys.path.insert(0, os.getcwd())
+
+#---
 # GLOBAL VARIABLES
 
 # Dictionary of tests loaded
@@ -154,3 +160,4 @@ def run():
     execute_tests(use_cases)
 
 
+run()
