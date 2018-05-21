@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 import os
 
 with open('README.md') as f:
@@ -12,7 +12,7 @@ setup(
     url='https://github.com/kcarcia/selt',
     author='Kaitlyn Carcia',
     author_email='kate.carcia@gmail.com',
-    py_modules=["run", "base_test"],
+    packages=find_packages(),
     install_requires=['keyring',
                       'selenium',
                       'termcolor',
@@ -21,6 +21,6 @@ setup(
     data_files=[(os.path.expanduser('~'), ['.selt.cfg'])],
     # Script that makes selt accessible to command line
     entry_points={
-        'console_scripts': ['selt=run:run'],
+        'console_scripts': ['selt=selt.run:run'],
     }
 )
