@@ -6,7 +6,7 @@ with open('README.md') as f:
 
 setup(
     name='selt',
-    version='1.0',
+    version='1.0.1',
     description='Runs selenium tests.',
     long_description=long_description,
     url='https://github.com/kcarcia/selt',
