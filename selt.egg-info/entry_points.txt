@@ -1,0 +1,3 @@
+[console_scripts]
+selt = selt.run:run
+

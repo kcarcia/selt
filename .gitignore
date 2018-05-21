@@ -2,7 +2,8 @@
 *.pyc
 .idea/
 *.log
-/*.egg-info
-/*.egg
+*/*.egg-info
+*/*.egg
 build/
 dist/
+

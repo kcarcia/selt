@@ -1,0 +1,12 @@
+.selt.cfg
+README.md
+setup.py
+selt/__init__.py
+selt/base_test.py
+selt/run.py
+selt.egg-info/PKG-INFO
+selt.egg-info/SOURCES.txt
+selt.egg-info/dependency_links.txt
+selt.egg-info/entry_points.txt
+selt.egg-info/requires.txt
+selt.egg-info/top_level.txt
