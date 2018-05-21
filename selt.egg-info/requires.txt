@@ -1,4 +1,0 @@
-keyring
-selenium
-termcolor
-pyyaml

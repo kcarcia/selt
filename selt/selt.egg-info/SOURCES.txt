@@ -1,9 +1,0 @@
-.selt.cfg
-README.md
-setup.py
-src/selt.egg-info/PKG-INFO
-src/selt.egg-info/SOURCES.txt
-src/selt.egg-info/dependency_links.txt
-src/selt.egg-info/entry_points.txt
-src/selt.egg-info/requires.txt
-src/selt.egg-info/top_level.txt
