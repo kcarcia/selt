@@ -158,6 +158,3 @@ def run():
     """
     use_cases = open_file("tests/manifest.yml")
     execute_tests(use_cases)
-
-
-run()
